@@ -1,8 +1,6 @@
 version: "3"
 
 networks:
-#   monitor-net:
-#     driver: bridge
   mongo-compose-network:
       driver: bridge
 
@@ -42,12 +40,6 @@ services:
       - GF_SERVER_ROOT_URL=http://localhost
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_USERS_ALLOW_SIGN_UP=false
-      # - GF_SERVER_DOMAIN=myrul.com
-      # - GF_SMTP_ENABLED=true
-      # - GF_SMTP_HOST=smtp.gmail.com:587
-      # - GF_SMTP_USER=myadrress@gmail.com
-      # - GF_SMTP_PASSWORD=mypassword
-      # - GF_SMTP_FROM_ADDRESS=myaddress@gmail.com
     expose:
       - 3000
     ports:
@@ -71,6 +63,7 @@ services:
     links:
       - cadvisor:cadvisor
       - node-exporter:node-exporter
+      - mongodb-exporter:mongodb-exporter
   
   node-exporter:
     image: prom/node-exporter:latest
